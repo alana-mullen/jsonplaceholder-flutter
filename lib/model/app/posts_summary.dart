@@ -29,9 +29,9 @@ class PostsSummary {
   }
 
   static List<PostsSummary> mapper(
-      List<PostsResponse> launches, List<UsersResponse> users) {
-    var postsList = launches.map((launch) {
-      return PostsSummary._mapper(launch, users);
+      List<PostsResponse> posts, List<UsersResponse> users) {
+    var postsList = posts.map((post) {
+      return PostsSummary._mapper(post, users);
     }).toList();
     // Only return valid posts:
     return postsList.whereType<PostsSummary>().toList();

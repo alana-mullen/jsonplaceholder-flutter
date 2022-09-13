@@ -18,14 +18,14 @@ class PostsSummaryBloc implements Bloc {
   PostsSummaryBloc() {
     _controller = StreamController<ApiResponse<List<PostsSummary>>>();
     _client = RestClient(Dio());
-    fetchPosts();
+    fetchPosts('');
   }
 
-  fetchPosts() async {
+  fetchPosts(String query) async {
     sink?.add(ApiResponse.loading("Fetching data"));
     try {
       List<UsersResponse> usersResponse = await _client.getUsers();
-      List<PostsResponse> postsResponse = await _client.getPosts();
+      List<PostsResponse> postsResponse = await _client.getPosts(query);
       var summary = PostsSummary.mapper(postsResponse, usersResponse);
       sink?.add(ApiResponse.completed(summary));
     } catch (ex) {

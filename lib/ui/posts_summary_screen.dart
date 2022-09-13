@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jsonplaceholder/bloc/posts_summary_bloc.dart';
@@ -16,6 +18,8 @@ class PostsSummaryScreen extends StatefulWidget {
 
 class _PostsSummaryScreenState extends State<PostsSummaryScreen> {
   late PostsSummaryBloc _bloc;
+  TextEditingController editingController = TextEditingController();
+  Timer? _debounce;
 
   @override
   void initState() {
@@ -26,11 +30,19 @@ class _PostsSummaryScreenState extends State<PostsSummaryScreen> {
   @override
   void dispose() {
     _bloc.dispose();
+    _debounce?.cancel();
     super.dispose();
   }
 
   _refresh() {
-    _bloc.fetchPosts();
+    _bloc.fetchPosts('');
+  }
+
+  _onSearchChanged(String query) {
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 1000), () {
+      _bloc.fetchPosts(query);
+    });
   }
 
   @override
@@ -49,7 +61,6 @@ class _PostsSummaryScreenState extends State<PostsSummaryScreen> {
               print("Stream ${snapshot.data!.status}");
               switch (snapshot.data?.status) {
                 case Status.LOADING:
-                  //return Loading(loadingMessage: snapshot.data!.message);
                   return const Loading(loadingMessage: "Loading");
                 case Status.COMPLETED:
                   final List<PostsSummary>? items = snapshot.data?.data;
@@ -60,7 +71,7 @@ class _PostsSummaryScreenState extends State<PostsSummaryScreen> {
                       //onRetryPressed: () => _bloc.fetchRocket(forceRefresh: true),
                       );
                 default:
-                  return const Text("Else");
+                  return Container();
               }
             }
             return Container();
@@ -76,10 +87,10 @@ class _PostsSummaryScreenState extends State<PostsSummaryScreen> {
         Padding(
           padding: const EdgeInsets.all(8),
           child: TextField(
-            onChanged: (value) {
-              //filterSearchResults(value);
+            onChanged: (query) {
+              _onSearchChanged(query);
             },
-            //controller: ,
+            controller: editingController,
             decoration: const InputDecoration(
                 labelText: "Search",
                 hintText: "Search",
