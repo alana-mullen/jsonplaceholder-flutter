@@ -1,7 +1,5 @@
 # Flutter technical test using the JSONPlaceholder API to display blog posts
 
-A new Flutter project.
-
 ## Technologies and libraries used
 
 * [Flutter](https://flutter.io)
