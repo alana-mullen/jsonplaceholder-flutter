@@ -6,8 +6,8 @@ import 'package:jsonplaceholder/bloc/posts_summary_bloc.dart';
 import 'package:jsonplaceholder/data/api_response.dart';
 import 'package:jsonplaceholder/model/app/posts_summary.dart';
 import 'package:jsonplaceholder/navigation/approute.dart';
-import 'package:jsonplaceholder/ui/error_screen.dart';
-import 'package:jsonplaceholder/ui/loading.dart';
+import 'package:jsonplaceholder/ui/widget/error_screen.dart';
+import 'package:jsonplaceholder/ui/widget/loading.dart';
 
 class PostsSummaryScreen extends StatefulWidget {
   const PostsSummaryScreen({Key? key}) : super(key: key);

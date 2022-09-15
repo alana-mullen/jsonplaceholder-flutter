@@ -1,14 +1,19 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jsonplaceholder/model/api/posts_response.dart';
 import 'package:jsonplaceholder/model/api/users_response.dart';
 
-class PostsSummary {
-  int id;
-  String title;
-  String body;
-  String userName;
-  String userAvatar;
+part 'posts_summary.freezed.dart';
 
-  PostsSummary(this.id, this.title, this.body, this.userName, this.userAvatar);
+@freezed
+class PostsSummary with _$PostsSummary {
+  const factory PostsSummary({
+    required int id,
+    required String title,
+    required String body,
+    required String userId,
+    required String userName,
+    required String userAvatar,
+  }) = _PostsSummary;
 
   // Parse the data we get from the REST API so we can make sure it's valid and
   // do any processing of the data before we use it in the UI.
@@ -19,13 +24,20 @@ class PostsSummary {
     if (postId == 0 || postTitle.isEmpty) return null;
     String postBody = post.body ?? '';
     var user = users.where((user) => user.id == post.userId);
+    String userId = post.userId.toString();
     String userName = '';
     if (user.isNotEmpty) {
       userName = user.first.username ?? '';
     }
     // Placeholder image for the user avatar:
     String avatar = 'https://api.lorem.space/image/face?w=100&h=100';
-    return PostsSummary(postId, postTitle, postBody, userName, avatar);
+    return PostsSummary(
+        id: postId,
+        title: postTitle,
+        body: postBody,
+        userId: userId,
+        userName: userName,
+        userAvatar: avatar);
   }
 
   static List<PostsSummary> mapper(

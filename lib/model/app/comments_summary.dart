@@ -1,20 +1,27 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jsonplaceholder/model/api/comments_response.dart';
 
-class CommentsSummary {
-  //int? postId;
-  int id;
-  String name;
-  String email;
-  String body;
+part 'comments_summary.freezed.dart';
 
-  CommentsSummary(this.id, this.name, this.email, this.body);
+@freezed
+class CommentsSummary with _$CommentsSummary {
+  const factory CommentsSummary({
+    required int id,
+    required String name,
+    required String email,
+    required String body,
+  }) = _CommentsSummary;
 
   static CommentsSummary? _mapper(CommentsResponse comment) {
     int commentId = comment.id ?? 0;
     String commentName = comment.name ?? '';
     String commentEmail = comment.email ?? '';
     String commentBody = comment.body ?? '';
-    return CommentsSummary(commentId, commentName, commentEmail, commentBody);
+    return CommentsSummary(
+        id: commentId,
+        name: commentName,
+        email: commentEmail,
+        body: commentBody);
   }
 
   static List<CommentsSummary> mapper(List<CommentsResponse> comments) {

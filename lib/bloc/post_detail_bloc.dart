@@ -5,32 +5,24 @@ import 'package:jsonplaceholder/bloc/bloc.dart';
 import 'package:jsonplaceholder/data/api_response.dart';
 import 'package:jsonplaceholder/data/rest_client.dart';
 import 'package:jsonplaceholder/model/api/comments_response.dart';
-import 'package:jsonplaceholder/model/api/user_detail_response.dart';
 import 'package:jsonplaceholder/model/app/comments_summary.dart';
-import 'package:jsonplaceholder/model/app/user_detail.dart';
 
 class PostDetailBloc implements Bloc {
   late RestClient _client;
-  StreamController<ApiResponse<List<CommentsSummary>>>? _commentsController;
+  StreamController<ApiResponse<List<CommentsSummary>>>? _controller;
 
   StreamSink<ApiResponse<List<CommentsSummary>>>? get commentsSink =>
-      _commentsController?.sink;
+      _controller?.sink;
   Stream<ApiResponse<List<CommentsSummary>>>? get commentsStream =>
-      _commentsController?.stream;
-
-  StreamController<ApiResponse<UserDetail>>? _userController;
-
-  StreamSink<ApiResponse<UserDetail>>? get userSink => _userController?.sink;
-  Stream<ApiResponse<UserDetail>>? get userStream => _userController?.stream;
+      _controller?.stream;
 
   PostDetailBloc() {
-    _commentsController =
-        StreamController<ApiResponse<List<CommentsSummary>>>();
-    _userController = StreamController<ApiResponse<UserDetail>>();
+    _controller = StreamController<ApiResponse<List<CommentsSummary>>>();
     _client = RestClient(Dio());
   }
 
   fetchComments(String postId) async {
+    if (_isDisposed) return; // Do nothing if already disposed
     commentsSink?.add(ApiResponse.loading("Fetching data"));
     try {
       List<CommentsResponse> commentsResponse =
@@ -43,21 +35,10 @@ class PostDetailBloc implements Bloc {
     }
   }
 
-  fetchUser(String userId) async {
-    userSink?.add(ApiResponse.loading("Fetching data"));
-    try {
-      UserDetailResponse userResponse = await _client.getUser(userId);
-      var user = UserDetail.mapper(userResponse);
-      userSink?.add(ApiResponse.completed(user));
-    } catch (ex) {
-      userSink?.add(ApiResponse.error(ex.toString()));
-      print(ex);
-    }
-  }
-
+  bool _isDisposed = false;
   @override
   void dispose() {
-    _commentsController?.close();
-    _userController?.close();
+    _controller?.close();
+    _isDisposed = true;
   }
 }

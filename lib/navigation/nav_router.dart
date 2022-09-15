@@ -6,7 +6,6 @@ import 'package:jsonplaceholder/navigation/approute.dart';
 import 'package:jsonplaceholder/ui/post_detail_screen.dart';
 import 'package:jsonplaceholder/ui/posts_summary_screen.dart';
 
-/// Caches and Exposes a [GoRouter]
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/posts',
@@ -28,6 +27,5 @@ List<GoRoute> get _routes => [
               key: state.pageKey,
               child: PostDetailScreen(
                   postId: state.params['id']!,
-                  //postTitle: state.params['title']!
                   post: state.extra! as PostsSummary)))
     ];

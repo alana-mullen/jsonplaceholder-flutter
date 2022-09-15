@@ -22,6 +22,7 @@ class PostsSummaryBloc implements Bloc {
   }
 
   fetchPosts(String query) async {
+    if (_isDisposed) return; // Do nothing if already disposed
     sink?.add(ApiResponse.loading("Fetching data"));
     try {
       List<UsersResponse> usersResponse = await _client.getUsers();
@@ -34,8 +35,10 @@ class PostsSummaryBloc implements Bloc {
     }
   }
 
+  bool _isDisposed = false;
   @override
   void dispose() {
     _controller?.close();
+    _isDisposed = true;
   }
 }

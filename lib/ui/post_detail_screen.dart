@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:jsonplaceholder/bloc/post_detail_bloc.dart';
 import 'package:jsonplaceholder/data/api_response.dart';
 import 'package:jsonplaceholder/model/app/comments_summary.dart';
 import 'package:jsonplaceholder/model/app/posts_summary.dart';
-import 'package:jsonplaceholder/model/app/user_detail.dart';
-import 'package:jsonplaceholder/ui/circle_image.dart';
-import 'package:jsonplaceholder/ui/error_screen.dart';
-import 'package:jsonplaceholder/ui/loading.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:jsonplaceholder/ui/widget/circle_image.dart';
+import 'package:jsonplaceholder/ui/widget/error_screen.dart';
+import 'package:jsonplaceholder/ui/widget/loading.dart';
+import 'package:jsonplaceholder/ui/user_bottom_sheet.dart';
 
 class PostDetailScreen extends StatefulWidget {
   final String postId;
-  //final String postTitle;
   final PostsSummary post;
   const PostDetailScreen({Key? key, required this.postId, required this.post})
       : super(key: key);
@@ -22,7 +19,6 @@ class PostDetailScreen extends StatefulWidget {
 }
 
 class _PostDetailScreenState extends State<PostDetailScreen> {
-  //bool shouldPop = true;
   late PostDetailBloc _bloc;
 
   @override
@@ -62,9 +58,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     color: Colors.grey,
                   ),
                   InkWell(
-                    onTap: () => _openUserModal(context),
+                    onTap: () => _openUserModal(context, data.userId),
                     child: Row(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         CircleImage(
@@ -142,7 +137,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
   _commentItem(CommentsSummary comment) {
     return Column(
-      //mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -157,65 +151,16 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
     );
   }
 
-  _openUserModal(BuildContext context) {
-    _bloc.fetchUser(widget.postId);
+  _openUserModal(BuildContext context, String userId) {
     showModalBottomSheet(
+        isScrollControlled: true,
         context: context,
         builder: (BuildContext context) {
-          return StreamBuilder<ApiResponse<UserDetail>>(
-            stream: _bloc.userStream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                switch (snapshot.data?.status) {
-                  case Status.LOADING:
-                    return const Loading(loadingMessage: "Loading comments");
-                  case Status.COMPLETED:
-                    final UserDetail? userDetail = snapshot.data?.data;
-                    return _userDetail(context, userDetail!);
-                  case Status.ERROR:
-                    return ErrorScreen();
-                  default:
-                    return Container();
-                }
-              }
-              return Container();
-            },
+          return Wrap(
+            children: [
+              UserBottomSheet(userId: userId),
+            ],
           );
-        }).whenComplete(() => {
-          //_bloc.dispose()
         });
-  }
-
-  _userDetail(BuildContext context, UserDetail userDetail) {
-    double lat = userDetail.location?.latitude ?? 0.0;
-    double lng = userDetail.location?.longitude ?? 0.0;
-    return Column(
-      children: [
-        Text(userDetail.username),
-        Text(userDetail.name),
-        Text(userDetail.username),
-        Text(userDetail.email),
-        Text(userDetail.address),
-        Visibility(
-          visible: userDetail.location != null,
-          child: SizedBox(
-            height: 300,
-            width: 300,
-            child: FlutterMap(
-              options: MapOptions(
-                center: LatLng(lat, lng),
-                zoom: 9.2,
-              ),
-              children: [
-                TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  userAgentPackageName: 'co.uk.thewirelessguy.jsonplaceholder',
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    );
   }
 }

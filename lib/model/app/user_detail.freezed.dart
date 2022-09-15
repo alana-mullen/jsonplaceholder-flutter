@@ -19,12 +19,13 @@ mixin _$UserDetail {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  String get avatar => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get phone => throw _privateConstructorUsedError;
+  String get website => throw _privateConstructorUsedError;
+  String get company => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   LatLng? get location => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
-  String? get website => throw _privateConstructorUsedError;
-  String? get company => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserDetailCopyWith<UserDetail> get copyWith =>
@@ -40,12 +41,13 @@ abstract class $UserDetailCopyWith<$Res> {
       {int id,
       String name,
       String username,
+      String avatar,
       String email,
+      String phone,
+      String website,
+      String company,
       String address,
-      LatLng? location,
-      String? phone,
-      String? website,
-      String? company});
+      LatLng? location});
 }
 
 /// @nodoc
@@ -61,12 +63,13 @@ class _$UserDetailCopyWithImpl<$Res> implements $UserDetailCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? username = freezed,
+    Object? avatar = freezed,
     Object? email = freezed,
-    Object? address = freezed,
-    Object? location = freezed,
     Object? phone = freezed,
     Object? website = freezed,
     Object? company = freezed,
+    Object? address = freezed,
+    Object? location = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -81,9 +84,25 @@ class _$UserDetailCopyWithImpl<$Res> implements $UserDetailCopyWith<$Res> {
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      avatar: avatar == freezed
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      website: website == freezed
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String,
+      company: company == freezed
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
               as String,
       address: address == freezed
           ? _value.address
@@ -93,18 +112,6 @@ class _$UserDetailCopyWithImpl<$Res> implements $UserDetailCopyWith<$Res> {
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LatLng?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      website: website == freezed
-          ? _value.website
-          : website // ignore: cast_nullable_to_non_nullable
-              as String?,
-      company: company == freezed
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -120,12 +127,13 @@ abstract class _$$_UserDetailCopyWith<$Res>
       {int id,
       String name,
       String username,
+      String avatar,
       String email,
+      String phone,
+      String website,
+      String company,
       String address,
-      LatLng? location,
-      String? phone,
-      String? website,
-      String? company});
+      LatLng? location});
 }
 
 /// @nodoc
@@ -143,12 +151,13 @@ class __$$_UserDetailCopyWithImpl<$Res> extends _$UserDetailCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? username = freezed,
+    Object? avatar = freezed,
     Object? email = freezed,
-    Object? address = freezed,
-    Object? location = freezed,
     Object? phone = freezed,
     Object? website = freezed,
     Object? company = freezed,
+    Object? address = freezed,
+    Object? location = freezed,
   }) {
     return _then(_$_UserDetail(
       id: id == freezed
@@ -163,9 +172,25 @@ class __$$_UserDetailCopyWithImpl<$Res> extends _$UserDetailCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      avatar: avatar == freezed
+          ? _value.avatar
+          : avatar // ignore: cast_nullable_to_non_nullable
+              as String,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      website: website == freezed
+          ? _value.website
+          : website // ignore: cast_nullable_to_non_nullable
+              as String,
+      company: company == freezed
+          ? _value.company
+          : company // ignore: cast_nullable_to_non_nullable
               as String,
       address: address == freezed
           ? _value.address
@@ -175,18 +200,6 @@ class __$$_UserDetailCopyWithImpl<$Res> extends _$UserDetailCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LatLng?,
-      phone: phone == freezed
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-      website: website == freezed
-          ? _value.website
-          : website // ignore: cast_nullable_to_non_nullable
-              as String?,
-      company: company == freezed
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -198,12 +211,13 @@ class _$_UserDetail implements _UserDetail {
       {required this.id,
       required this.name,
       required this.username,
+      required this.avatar,
       required this.email,
+      required this.phone,
+      required this.website,
+      required this.company,
       required this.address,
-      this.location,
-      this.phone,
-      this.website,
-      this.company});
+      this.location});
 
   @override
   final int id;
@@ -212,21 +226,23 @@ class _$_UserDetail implements _UserDetail {
   @override
   final String username;
   @override
+  final String avatar;
+  @override
   final String email;
+  @override
+  final String phone;
+  @override
+  final String website;
+  @override
+  final String company;
   @override
   final String address;
   @override
   final LatLng? location;
-  @override
-  final String? phone;
-  @override
-  final String? website;
-  @override
-  final String? company;
 
   @override
   String toString() {
-    return 'UserDetail(id: $id, name: $name, username: $username, email: $email, address: $address, location: $location, phone: $phone, website: $website, company: $company)';
+    return 'UserDetail(id: $id, name: $name, username: $username, avatar: $avatar, email: $email, phone: $phone, website: $website, company: $company, address: $address, location: $location)';
   }
 
   @override
@@ -237,12 +253,13 @@ class _$_UserDetail implements _UserDetail {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.avatar, avatar) &&
             const DeepCollectionEquality().equals(other.email, email) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.website, website) &&
-            const DeepCollectionEquality().equals(other.company, company));
+            const DeepCollectionEquality().equals(other.company, company) &&
+            const DeepCollectionEquality().equals(other.address, address) &&
+            const DeepCollectionEquality().equals(other.location, location));
   }
 
   @override
@@ -251,12 +268,13 @@ class _$_UserDetail implements _UserDetail {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(avatar),
       const DeepCollectionEquality().hash(email),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(location),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(website),
-      const DeepCollectionEquality().hash(company));
+      const DeepCollectionEquality().hash(company),
+      const DeepCollectionEquality().hash(address),
+      const DeepCollectionEquality().hash(location));
 
   @JsonKey(ignore: true)
   @override
@@ -269,12 +287,13 @@ abstract class _UserDetail implements UserDetail {
       {required final int id,
       required final String name,
       required final String username,
+      required final String avatar,
       required final String email,
+      required final String phone,
+      required final String website,
+      required final String company,
       required final String address,
-      final LatLng? location,
-      final String? phone,
-      final String? website,
-      final String? company}) = _$_UserDetail;
+      final LatLng? location}) = _$_UserDetail;
 
   @override
   int get id;
@@ -283,17 +302,19 @@ abstract class _UserDetail implements UserDetail {
   @override
   String get username;
   @override
+  String get avatar;
+  @override
   String get email;
+  @override
+  String get phone;
+  @override
+  String get website;
+  @override
+  String get company;
   @override
   String get address;
   @override
   LatLng? get location;
-  @override
-  String? get phone;
-  @override
-  String? get website;
-  @override
-  String? get company;
   @override
   @JsonKey(ignore: true)
   _$$_UserDetailCopyWith<_$_UserDetail> get copyWith =>
