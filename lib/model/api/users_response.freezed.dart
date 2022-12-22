@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'users_response.dart';
 
@@ -33,34 +33,37 @@ mixin _$UsersResponse {
 abstract class $UsersResponseCopyWith<$Res> {
   factory $UsersResponseCopyWith(
           UsersResponse value, $Res Function(UsersResponse) then) =
-      _$UsersResponseCopyWithImpl<$Res>;
+      _$UsersResponseCopyWithImpl<$Res, UsersResponse>;
+  @useResult
   $Res call({int? id, String? username});
 }
 
 /// @nodoc
-class _$UsersResponseCopyWithImpl<$Res>
+class _$UsersResponseCopyWithImpl<$Res, $Val extends UsersResponse>
     implements $UsersResponseCopyWith<$Res> {
   _$UsersResponseCopyWithImpl(this._value, this._then);
 
-  final UsersResponse _value;
   // ignore: unused_field
-  final $Res Function(UsersResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      username: username == freezed
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -71,31 +74,30 @@ abstract class _$$_UsersResponseCopyWith<$Res>
           _$_UsersResponse value, $Res Function(_$_UsersResponse) then) =
       __$$_UsersResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? id, String? username});
 }
 
 /// @nodoc
 class __$$_UsersResponseCopyWithImpl<$Res>
-    extends _$UsersResponseCopyWithImpl<$Res>
+    extends _$UsersResponseCopyWithImpl<$Res, _$_UsersResponse>
     implements _$$_UsersResponseCopyWith<$Res> {
   __$$_UsersResponseCopyWithImpl(
       _$_UsersResponse _value, $Res Function(_$_UsersResponse) _then)
-      : super(_value, (v) => _then(v as _$_UsersResponse));
+      : super(_value, _then);
 
-  @override
-  _$_UsersResponse get _value => super._value as _$_UsersResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
   }) {
     return _then(_$_UsersResponse(
-      id: id == freezed
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      username: username == freezed
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -127,19 +129,18 @@ class _$_UsersResponse implements _UsersResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UsersResponse &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.username, username));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(username));
+  int get hashCode => Object.hash(runtimeType, id, username);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UsersResponseCopyWith<_$_UsersResponse> get copyWith =>
       __$$_UsersResponseCopyWithImpl<_$_UsersResponse>(this, _$identity);
 

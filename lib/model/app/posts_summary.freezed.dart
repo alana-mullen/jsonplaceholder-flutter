@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'posts_summary.dart';
 
@@ -32,7 +32,8 @@ mixin _$PostsSummary {
 abstract class $PostsSummaryCopyWith<$Res> {
   factory $PostsSummaryCopyWith(
           PostsSummary value, $Res Function(PostsSummary) then) =
-      _$PostsSummaryCopyWithImpl<$Res>;
+      _$PostsSummaryCopyWithImpl<$Res, PostsSummary>;
+  @useResult
   $Res call(
       {int id,
       String title,
@@ -43,48 +44,51 @@ abstract class $PostsSummaryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PostsSummaryCopyWithImpl<$Res> implements $PostsSummaryCopyWith<$Res> {
+class _$PostsSummaryCopyWithImpl<$Res, $Val extends PostsSummary>
+    implements $PostsSummaryCopyWith<$Res> {
   _$PostsSummaryCopyWithImpl(this._value, this._then);
 
-  final PostsSummary _value;
   // ignore: unused_field
-  final $Res Function(PostsSummary) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? body = freezed,
-    Object? userId = freezed,
-    Object? userName = freezed,
-    Object? userAvatar = freezed,
+    Object? id = null,
+    Object? title = null,
+    Object? body = null,
+    Object? userId = null,
+    Object? userName = null,
+    Object? userAvatar = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      body: body == freezed
+      body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
+      userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      userAvatar: userAvatar == freezed
+      userAvatar: null == userAvatar
           ? _value.userAvatar
           : userAvatar // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -95,6 +99,7 @@ abstract class _$$_PostsSummaryCopyWith<$Res>
           _$_PostsSummary value, $Res Function(_$_PostsSummary) then) =
       __$$_PostsSummaryCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int id,
       String title,
@@ -106,46 +111,44 @@ abstract class _$$_PostsSummaryCopyWith<$Res>
 
 /// @nodoc
 class __$$_PostsSummaryCopyWithImpl<$Res>
-    extends _$PostsSummaryCopyWithImpl<$Res>
+    extends _$PostsSummaryCopyWithImpl<$Res, _$_PostsSummary>
     implements _$$_PostsSummaryCopyWith<$Res> {
   __$$_PostsSummaryCopyWithImpl(
       _$_PostsSummary _value, $Res Function(_$_PostsSummary) _then)
-      : super(_value, (v) => _then(v as _$_PostsSummary));
+      : super(_value, _then);
 
-  @override
-  _$_PostsSummary get _value => super._value as _$_PostsSummary;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? title = freezed,
-    Object? body = freezed,
-    Object? userId = freezed,
-    Object? userName = freezed,
-    Object? userAvatar = freezed,
+    Object? id = null,
+    Object? title = null,
+    Object? body = null,
+    Object? userId = null,
+    Object? userName = null,
+    Object? userAvatar = null,
   }) {
     return _then(_$_PostsSummary(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      body: body == freezed
+      body: null == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: userId == freezed
+      userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      userName: userName == freezed
+      userName: null == userName
           ? _value.userName
           : userName // ignore: cast_nullable_to_non_nullable
               as String,
-      userAvatar: userAvatar == freezed
+      userAvatar: null == userAvatar
           ? _value.userAvatar
           : userAvatar // ignore: cast_nullable_to_non_nullable
               as String,
@@ -187,27 +190,23 @@ class _$_PostsSummary implements _PostsSummary {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PostsSummary &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.body, body) &&
-            const DeepCollectionEquality().equals(other.userId, userId) &&
-            const DeepCollectionEquality().equals(other.userName, userName) &&
-            const DeepCollectionEquality()
-                .equals(other.userAvatar, userAvatar));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.body, body) || other.body == body) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.userName, userName) ||
+                other.userName == userName) &&
+            (identical(other.userAvatar, userAvatar) ||
+                other.userAvatar == userAvatar));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(body),
-      const DeepCollectionEquality().hash(userId),
-      const DeepCollectionEquality().hash(userName),
-      const DeepCollectionEquality().hash(userAvatar));
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, body, userId, userName, userAvatar);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PostsSummaryCopyWith<_$_PostsSummary> get copyWith =>
       __$$_PostsSummaryCopyWithImpl<_$_PostsSummary>(this, _$identity);
 }

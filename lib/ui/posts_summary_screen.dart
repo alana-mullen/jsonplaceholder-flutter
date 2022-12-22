@@ -1,11 +1,11 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:jsonplaceholder/bloc/posts_summary_bloc.dart';
 import 'package:jsonplaceholder/data/api_response.dart';
 import 'package:jsonplaceholder/model/app/posts_summary.dart';
-import 'package:jsonplaceholder/navigation/approute.dart';
+import 'package:jsonplaceholder/navigation/nav_router.gr.dart';
 import 'package:jsonplaceholder/ui/widget/error_screen.dart';
 import 'package:jsonplaceholder/ui/widget/loading.dart';
 
@@ -58,7 +58,7 @@ class _PostsSummaryScreenState extends State<PostsSummaryScreen> {
           stream: _bloc.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              print("Stream ${snapshot.data!.status}");
+              debugPrint("Stream ${snapshot.data!.status}");
               switch (snapshot.data?.status) {
                 case Status.LOADING:
                   return const Loading(loadingMessage: "Loading");
@@ -107,9 +107,8 @@ class _PostsSummaryScreenState extends State<PostsSummaryScreen> {
               return InkWell(
                 child: _listItem(items[index]),
                 onTap: () {
-                  context.pushNamed(AppRoute.detail.name,
-                      params: {'id': items[index].id.toString()},
-                      extra: items[index]);
+                  context.router.push(PostDetailScreenRoute(
+                      postId: items[index].id.toString(), post: items[index]));
                 },
               );
             },
